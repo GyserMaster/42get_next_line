@@ -6,21 +6,16 @@
 #    By: spetrov <gyser.petrov.42@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/22 21:27:08 by spetrov           #+#    #+#              #
-#    Updated: 2023/04/22 21:28:54 by spetrov          ###   ########.fr        #
+#    Updated: 2023/04/23 15:01:53 by spetrov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	=	ft_putchar_fd.c \
-		ft_putstr_fd.c \
-		ft_putpointer.c \
-		ft_putx.c \
-		ft_putdi.c \
-		ft_putul.c \
-		ft_printf.c \
+SRC	=	get_next_line.c \
+		get_next_line_utils.c \
 
 OBJ	= ${SRC:%.c=%.o}
 
-NAME	= libftprintf.a
+NAME	= get_next_line.a
 
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
@@ -29,7 +24,7 @@ RM		= rm -f
 
 $(NAME):	${OBJ}
 			${CC} ${FLAGS} -c ${SRC}
-			ar rc ${NAME} ${OBJ} ft_printf.h
+			ar rc ${NAME} ${OBJ} get_next_line.h
 
 all:		${NAME}
 
