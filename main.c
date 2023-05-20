@@ -6,7 +6,7 @@
 /*   By: spetrov <gyser.petrov.42@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:57:02 by spetrov           #+#    #+#             */
-/*   Updated: 2023/04/23 22:57:02 by spetrov          ###   ########.fr       */
+/*   Updated: 2023/05/20 16:21:23 by spetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 int main() {
     int     fd;
-    char    *singleLine = malloc(1 * sizeof(char));
+    char    *line = malloc(1 * sizeof(char));
 
-    fd = open("teste", 256);
-    while(singleLine != NULL)
+    fd = open("text.txt", 256);
+    while(line != NULL)
     {
-        free(singleLine);
-        singleLine = get_next_line(fd);
-        printf("%s", singleLine);
+        free(line);
+        line = get_next_line(fd);
+        printf("%s", line);
     }
     return (0);
 }
