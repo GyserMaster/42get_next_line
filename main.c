@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spetrov <gyser.petrov.42@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/22 21:30:21 by spetrov           #+#    #+#             */
-/*   Updated: 2023/04/23 15:23:56 by spetrov          ###   ########.fr       */
+/*   Created: 2023/04/23 22:57:02 by spetrov           #+#    #+#             */
+/*   Updated: 2023/04/23 22:57:02 by spetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line_utils.c"
+#include "get_next_line.c"
 
-char	*get_next_line(int fd)
-{
-	static char	*buffer;
-	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	buffer = ft_read_and_save(fd, buffer);
-	if (!buffer)
-		return (NULL);
-	return (line);
+int main() {
+    int     fd;
+    char    *singleLine = malloc(1 * sizeof(char));
+
+    fd = open("teste", 256);
+    while(singleLine != NULL)
+    {
+        free(singleLine);
+        singleLine = get_next_line(fd);
+        printf("%s", singleLine);
+    }
+    return (0);
 }

@@ -12,15 +12,16 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE = 10
-
-# include <unistd.h>
-# include <stdio.h>
+# define BUFFER_SIZE 5
 # include <stdlib.h>
-# include <sys/uio.h>
-# include <sys/types.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "stdio.h"
 
+int		ft_strlen(const char *str);
+char	*ft_strchr(char *str, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 char	*get_next_line(int fd);
-char	*get_next_line_utils(int fd);
+
 #endif
