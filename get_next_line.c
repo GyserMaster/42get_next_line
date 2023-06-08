@@ -6,16 +6,16 @@
 /*   By: spetrov <gyser.petrov.42@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:30:21 by spetrov           #+#    #+#             */
-/*   Updated: 2023/05/20 16:27:55 by spetrov          ###   ########.fr       */
+/*   Updated: 2023/06/08 23:24:48 by spetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line_utils.c"
+//#include "get_next_line_utils.c"
 
 char	*ft_read_line(int fd, char *buffer)
 {
-	
+	return (0);
 }
 
 char	*get_next_line(int fd)

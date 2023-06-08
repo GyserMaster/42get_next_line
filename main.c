@@ -6,7 +6,7 @@
 /*   By: spetrov <gyser.petrov.42@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:57:02 by spetrov           #+#    #+#             */
-/*   Updated: 2023/05/20 16:21:23 by spetrov          ###   ########.fr       */
+/*   Updated: 2023/06/08 23:38:45 by spetrov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,14 @@ int main() {
     }
     return (0);
 }
+/*
+gcc -c *.c  
+lldb a.out (aqui si tienes params)
+b main
+run
+password
+gui
+
+n next line
+s enter to funcion
+*/
