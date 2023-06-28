@@ -14,6 +14,7 @@
 #include "get_next_line.c"
 #include "get_next_line_utils.c"
 #include <stdio.h>
+#include <fcntl.h>
 
 int	main(void)
 {
@@ -28,7 +29,7 @@ int	main(void)
 	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s\n", line);
+		printf("%s", line);
 		free(line);
 	}
 	close(fd);

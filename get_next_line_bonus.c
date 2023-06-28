@@ -93,22 +93,22 @@ char	*ft_read_and_save(int fd, char *save)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*save;
+	static char	*save[1024];
 
 	line = NULL;
 	if (read(fd, 0, 0) < 0 || fd < 0 || BUFFER_SIZE <= 0)
     {
-        if (save)
+        if (save[fd])
         {
-            free (save);
-            save = NULL;
+            free (save[fd]);
+            save[fd] = NULL;
         }
         return (NULL);
     }
-	save = ft_read_and_save(fd, save);
-	if (!save)
+	save[fd] = ft_read_and_save(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_get_line(save[fd]);
+	save[fd] = ft_save(save[fd]);
 	return (line);
 }
