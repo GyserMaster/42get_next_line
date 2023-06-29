@@ -27,5 +27,4 @@ char			*ft_write_buffer(int fd, char *buffer);
 char			*ft_get_line(char *buffer);
 char			*ft_update_buffer(char *buffer);
 
-
 #endif

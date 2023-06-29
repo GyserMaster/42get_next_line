@@ -20,8 +20,6 @@ char	*ft_get_line(char *buffer)
 	i = 0;
 	if (!buffer[i])
 		return (NULL);
-	//buffer[4] = aaaa|a\n
-	//            bb
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 2));
@@ -49,8 +47,6 @@ char	*ft_update_buffer(char *buffer)
 	char	*str;
 
 	i = 0;
-	//buffer[4] = aaaa|a\n
-	//            bb
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
@@ -79,8 +75,6 @@ char	*ft_write_buffer(int fd, char *buffer)
 	if (!swap)
 		return (NULL);
 	bytes = 1;
-	//buffer[4] = aaaa|a\n
-	//            bb
 	while (!ft_strchr(buffer, '\n') && bytes != 0)
 	{
 		bytes = read(fd, swap, BUFFER_SIZE);
@@ -103,20 +97,18 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	if (read(fd, 0, 0) < 0 || fd < 0 || BUFFER_SIZE <= 0)
-    {
-        if (buffer)
-        {
-            free (buffer);
-            buffer = NULL;
-        }
-        return (NULL);
-    }
+	{
+		if (buffer)
+		{
+			free(buffer);
+			buffer = NULL;
+		}
+		return (NULL);
+	}
 	buffer = ft_write_buffer(fd, buffer);
-	//buffer[4] = aaaa|a\n
-	//            bb
 	if (!buffer)
 		return (NULL);
 	line = ft_get_line(buffer);
-	buffer = ft_update_buffer(buffer); // bb
+	buffer = ft_update_buffer(buffer);
 	return (line);
 }
