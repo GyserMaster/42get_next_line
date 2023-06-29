@@ -24,19 +24,19 @@ size_t	ft_strlen(char *str)
 	return (c);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(char *str, int c)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
+	if (!str)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
+		return ((char *)&str[ft_strlen(str)]);
+	while (str[i] != '\0')
 	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
+		if (str[i] == (char) c)
+			return ((char *)&str[i]);
 		i++;
 	}
 	return (0);
@@ -45,7 +45,7 @@ char	*ft_strchr(char *s, int c)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
-	size_t	c;
+	size_t	j;
 	char	*str;
 
 	if (!s1)
@@ -59,12 +59,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (str == NULL)
 		return (NULL);
 	i = -1;
-	c = 0;
+	j = 0;
 	if (s1)
 		while (s1[++i] != '\0')
 			str[i] = s1[i];
-	while (s2[c] != '\0')
-		str[i++] = s2[c++];
+	while (s2[j] != '\0')
+		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	free(s1);
 	return (str);

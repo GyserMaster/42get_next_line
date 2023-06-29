@@ -12,103 +12,111 @@
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char *save)
+char	*ft_get_line(char *buffer)
 {
 	int		i;
-	char	*s;
+	char	*str;
 
 	i = 0;
-	if (!save[i])
+	if (!buffer[i])
 		return (NULL);
-	while (save[i] && save[i] != '\n')
+	//buffer[4] = aaaa|a\n
+	//            bb
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	s = (char *)malloc(sizeof(char) * (i + 2));
-	if (!s)
+	str = (char *)malloc(sizeof(char) * (i + 2));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (save[i] && save[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		s[i] = save[i];
+		str[i] = buffer[i];
 		i++;
 	}
-	if (save[i] == '\n')
+	if (buffer[i] == '\n')
 	{
-		s[i] = save[i];
+		str[i] = buffer[i];
 		i++;
 	}
-	s[i] = '\0';
-	return (s);
+	str[i] = '\0';
+	return (str);
 }
 
-char	*ft_save(char *save)
+char	*ft_save(char *buffer)
 {
 	int		i;
 	int		j;
-	char	*s;
+	char	*str;
 
 	i = 0;
-	while (save[i] && save[i] != '\n')
+	//buffer[4] = aaaa|a\n
+	//            bb
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (!save[i])
+	if (!buffer[i])
 	{
-		free(save);
+		free(buffer);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
-	if (!s)
+	str = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!str)
 		return (NULL);
 	i++;
 	j = 0;
-	while (save[i])
-		s[j++] = save[i++];
-	s[j] = '\0';
-	free(save);
-	return (s);
+	while (buffer[i])
+		str[j++] = buffer[i++];
+	str[j] = '\0';
+	free(buffer);
+	return (str);
 }
 
-char	*ft_read_and_save(int fd, char *save)
+char	*ft_read_and_save(int fd, char *buffer)
 {
-	char	*buff;
+	char	*swap;
 	int		read_bytes;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
+	swap = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!swap)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(save, '\n') && read_bytes != 0)
+	//buffer[4] = aaaa|a\n
+	//            bb
+	while (!ft_strchr(buffer, '\n') && read_bytes != 0)
 	{
-		read_bytes = read(fd, buff, BUFFER_SIZE);
+		read_bytes = read(fd, swap, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			free(buff);
+			free(swap);
 			return (NULL);
 		}
-		buff[read_bytes] = '\0';
-		save = ft_strjoin(save, buff);
+		swap[read_bytes] = '\0';
+		buffer = ft_strjoin(buffer, swap);
 	}
-	free(buff);
-	return (save);
+	free(swap);
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*buffer;
 	char		*line;
-	static char	*save;
 
 	line = NULL;
 	if (read(fd, 0, 0) < 0 || fd < 0 || BUFFER_SIZE <= 0)
     {
-        if (save)
+        if (buffer)
         {
-            free (save);
-            save = NULL;
+            free (buffer);
+            buffer = NULL;
         }
         return (NULL);
     }
-	save = ft_read_and_save(fd, save);
-	if (!save)
+	buffer = ft_read_and_save(fd, buffer);
+	//buffer[4] = aaaa|a\n
+	//            bb
+	if (!buffer)
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_get_line(buffer);
+	buffer = ft_save(buffer); // bb
 	return (line);
 }
