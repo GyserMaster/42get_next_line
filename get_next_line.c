@@ -42,7 +42,7 @@ char	*ft_get_line(char *buffer)
 	return (str);
 }
 
-char	*ft_save(char *buffer)
+char	*ft_update_buffer(char *buffer)
 {
 	int		i;
 	int		j;
@@ -70,26 +70,26 @@ char	*ft_save(char *buffer)
 	return (str);
 }
 
-char	*ft_read_and_save(int fd, char *buffer)
+char	*ft_write_buffer(int fd, char *buffer)
 {
 	char	*swap;
-	int		read_bytes;
+	int		bytes;
 
 	swap = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!swap)
 		return (NULL);
-	read_bytes = 1;
+	bytes = 1;
 	//buffer[4] = aaaa|a\n
 	//            bb
-	while (!ft_strchr(buffer, '\n') && read_bytes != 0)
+	while (!ft_strchr(buffer, '\n') && bytes != 0)
 	{
-		read_bytes = read(fd, swap, BUFFER_SIZE);
-		if (read_bytes == -1)
+		bytes = read(fd, swap, BUFFER_SIZE);
+		if (bytes == -1)
 		{
 			free(swap);
 			return (NULL);
 		}
-		swap[read_bytes] = '\0';
+		swap[bytes] = '\0';
 		buffer = ft_strjoin(buffer, swap);
 	}
 	free(swap);
@@ -111,12 +111,12 @@ char	*get_next_line(int fd)
         }
         return (NULL);
     }
-	buffer = ft_read_and_save(fd, buffer);
+	buffer = ft_write_buffer(fd, buffer);
 	//buffer[4] = aaaa|a\n
 	//            bb
 	if (!buffer)
 		return (NULL);
 	line = ft_get_line(buffer);
-	buffer = ft_save(buffer); // bb
+	buffer = ft_update_buffer(buffer); // bb
 	return (line);
 }

@@ -23,8 +23,9 @@ char			*ft_strchr(char *str, int c);
 char			*ft_strjoin(char *s1, char *s2);
 
 char			*get_next_line(int fd);
-char			*ft_get_line(char *save);
-char			*ft_save(char *save);
-char			*ft_read_and_save(int fd, char *save);
+char			*ft_write_buffer(int fd, char *buffer);
+char			*ft_get_line(char *buffer);
+char			*ft_update_buffer(char *buffer);
+
 
 #endif

@@ -14,19 +14,19 @@
 
 size_t	ft_strlen(char *str)
 {
-	size_t	c;
+	size_t	i;
 
-	c = 0;
+	i = 0;
 	if (!str)
 		return (0);
-	while (str[c] != '\0')
-		c++;
-	return (c);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strchr(char *str, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (!str)
